@@ -1,5 +1,6 @@
 <html lang="en">
-    <header xmlns:th="https://www.thymeleaf.org" th:fragment="header" xmlns:sec="https://www.thymeleaf.org/extras/spring-security" class="header">
+    <header xmlns:th="https://www.thymeleaf.org" th:fragment="header"
+            xmlns:sec="https://www.thymeleaf.org/extras/spring-security" class="header">
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -28,9 +29,11 @@
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="/login"><i class="fa fa-user"></i> Login</a>
-                            </div>
+                            <span sec:authorize="!isAuthenticated()">
+                                <div class="header__top__right__auth">
+                                    <a href="/login"><i class="fa fa-user"></i> Login</a>
+                                </div>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -47,7 +50,14 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="/">Home</a></li>
-                            <li><a href="/register">Register</a></li>
+                            <span sec:authorize="!isAuthenticated()">
+                                <li><a href="/register">Register</a></li>
+                            </span>
+                            <li></li>
+                            <span sec:authorize="isAuthenticated()">
+                                <li><a href="/profile">Profile</a></li>
+                            </span>
+                            <li></li>
                             <li>
                                 <a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
