@@ -22,25 +22,20 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <h4>Register</h4>
-                <form action="#" th:action="@{/register}" th:object="${account}" method="post">
+                <h4>Login</h4>
+                <form action="#" th:action="@{/login}" method="post">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="checkout__input">
-                                <p>Name<span>*</span></p>
-                                <input id="name" th:field="*{name}" type="text">
-                            </div>
-
-                            <div class="checkout__input">
                                 <p>Email<span>*</span></p>
-                                <input id="email" th:field="*{email}" type="email">
+                                <input id="email" type="email">
                             </div>
                             <div class="checkout__input">
                                 <p>Password<span>*</span></p>
-                                <input id="password" th:field="*{password}" type="password">
+                                <input id="password" type="password">
                             </div>
                             <div class="checkout__input">
-                                <button type="submit" class="site-btn">Register</button>
+                                <button type="submit" class="site-btn">Login</button>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">
