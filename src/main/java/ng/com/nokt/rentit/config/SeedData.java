@@ -27,6 +27,11 @@ public class SeedData implements CommandLineRunner {
             post02.setTitle("Example Post");
             post02.setBody("Some Really Long Text Here");
             postService.save(post02);
+
+            Post post03 = new Post();
+            post03.setTitle("Xample Post");
+            post03.setBody("Some Really Really Long Text Here");
+            postService.save(post03);
         }
     }
 }
