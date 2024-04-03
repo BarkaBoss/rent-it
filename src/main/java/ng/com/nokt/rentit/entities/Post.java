@@ -16,11 +16,13 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
 
     @Column(columnDefinition = "TEXT")
     private String body;
-
     private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
+    private Account account;
 }

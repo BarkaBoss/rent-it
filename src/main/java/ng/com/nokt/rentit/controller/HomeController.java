@@ -21,4 +21,9 @@ public class HomeController {
         model.addAttribute("posts", posts);
         return "index";
     }
+
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
 }
