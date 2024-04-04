@@ -2,6 +2,7 @@ package ng.com.nokt.rentit.services;
 
 import ng.com.nokt.rentit.entities.Account;
 import ng.com.nokt.rentit.repositories.AccountRepository;
+import ng.com.nokt.rentit.utils.constants.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,6 +27,7 @@ public class AccountService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
     public Account save(Account account){
         account.setPassword(passwordEncoder.encode(account.getPassword()));
+        account.setRole(Roles.USER.getRole());
         return accountRepository.save(account);
     }
 
@@ -38,7 +40,7 @@ public class AccountService implements UserDetailsService {
         Account account = optionalAccount.get();
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("Allow"));
+        grantedAuthorities.add(new SimpleGrantedAuthority(account.getRole()));
         return new User(account.getEmail(), account.getPassword(), grantedAuthorities);
     }
 }
