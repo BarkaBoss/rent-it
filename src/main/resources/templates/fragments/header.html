@@ -34,6 +34,11 @@
                                     <a href="/login"><i class="fa fa-user"></i> Login</a>
                                 </div>
                             </span>
+                            <span sec:authorize="isAuthenticated()">
+                                <div class="header__top__right__auth">
+                                    <a href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                                </div>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -56,6 +61,10 @@
                             <li></li>
                             <span sec:authorize="isAuthenticated()">
                                 <li><a href="/profile">Profile</a></li>
+                            </span>
+                            <li></li>
+                            <span sec:authorize="hasRole('ROLE_ADMIN')">
+                                <li><a href="/admin">Admin</a></li>
                             </span>
                             <li></li>
                             <li>

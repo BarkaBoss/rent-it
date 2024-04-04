@@ -43,15 +43,15 @@ public class SeedData implements CommandLineRunner {
         Account account2 = new Account();
         Account account3 = new Account();
 
-        account.setEmail("j@d.com");
+        account.setEmail("a@f.com");
         account.setPassword("password27");
-        account.setFirstname("Lele");
-        account.setLastname("Simpah");
+        account.setFirstname("Abigail");
+        account.setLastname("Fori");
 
         account1.setEmail("l@s.com");
         account1.setPassword("password27");
-        account1.setFirstname("Daniel");
-        account1.setLastname("Fori");
+        account1.setFirstname("Lele");
+        account1.setLastname("Simpah");
         account1.setRole(Roles.ADMIN.getRole());
 
         account2.setEmail("j@f.com");
