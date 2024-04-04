@@ -58,12 +58,14 @@
                             <span sec:authorize="!isAuthenticated()">
                                 <li><a href="/register">Register</a></li>
                             </span>
-                            <li></li>
                             <span sec:authorize="isAuthenticated()">
                                 <li><a href="/profile">Profile</a></li>
                             </span>
                             <li></li>
                             <span sec:authorize="hasRole('ROLE_ADMIN')">
+                                <li><a href="/admin">Admin</a></li>
+                            </span>
+                            <span sec:authorize="hasAuthority('ACCESS_ADMIN_PANEL')">
                                 <li><a href="/admin">Admin</a></li>
                             </span>
                             <li></li>

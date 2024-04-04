@@ -1,5 +1,7 @@
 package ng.com.nokt.rentit.security;
 
+import ng.com.nokt.rentit.utils.constants.Privileges;
+import ng.com.nokt.rentit.utils.constants.Roles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -36,8 +38,10 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .requestMatchers(WHITE_LIST)
                 .permitAll()
-                .anyRequest()
-                .authenticated()
+                .requestMatchers("/profile/**").authenticated()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/editor/**").hasAnyRole("ADMIN","EDITOR")
+                .requestMatchers("/admin/**").hasAuthority(Privileges.ACCESS_ADMIN_PANEL.getPrivilege())
                 .and()
                 .formLogin(
                         formLogin -> formLogin
