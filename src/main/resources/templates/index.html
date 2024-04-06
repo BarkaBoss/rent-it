@@ -36,12 +36,10 @@
                     <li th:text="${post.createdAt}"><i class="fa fa-calendar-o"></i> May 4,2019</li>
                     <li><i class="fa fa-comment-o"></i> 5</li>
                   </ul>
-                  <h5 th:text="${post.title}"><a href="#">Cooking tips make cooking simple</a></h5>
+                  <h5 th:text="${post.title}"><a href="#"></a></h5>
                   <p th:text="${post.body.substring(0, 15)+'...'}">
-                    Sed quia non numquam modi tempora indunt ut labore et dolore
-                    magnam aliquam quaerat
                   </p>
-                  <a href="#" class="primary-btn">PURCHASE</a>
+                  <a th:href="@{'/post/'+${post.id}}" class="primary-btn">PURCHASE</a>
                 </div>
               </div>
             </div>
