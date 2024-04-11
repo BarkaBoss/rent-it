@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -29,8 +30,12 @@ public class HomeController {
 
     @GetMapping("/post/{id}")
     public String post(Model model, @PathVariable Long id){
-        Post post = postService.getPostById(id).get();
-        model.addAttribute("post", post);
-        return "details";
+        Optional<Post> post = postService.getPostById(id);
+        if (post.isPresent()){
+            Post newPost = post.get();
+            model.addAttribute("post", newPost);
+            return "details";
+        }
+       return "404";
     }
 }

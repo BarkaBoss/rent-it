@@ -115,7 +115,7 @@
                                         <img src="img/blog/details/details-author.jpg" alt="">
                                     </div>
                                     <div class="blog__details__author__text">
-                                        <h6>Michael Scofield</h6>
+                                        <h6 th:text="${post.account.firstname}+' '+${post.account.lastname}"></h6>
                                         <span>Admin</span>
                                     </div>
                                 </div>
