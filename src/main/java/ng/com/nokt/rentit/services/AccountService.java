@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class AccountService implements UserDetailsService {
@@ -37,17 +38,21 @@ public class AccountService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Account> optionalAccount = accountRepository.findByEmailIgnoreCase(email);
-        if(!optionalAccount.isPresent()){
+
+        if(optionalAccount.isPresent()){
+            Account account = optionalAccount.get();
+
+            System.out.println("Found User >> "+ account.getEmail());
+            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+            grantedAuthorities.add(new SimpleGrantedAuthority(account.getRole()));
+
+            for (Authority _auth: account.getAuthorities()){
+                grantedAuthorities.add(new SimpleGrantedAuthority(_auth.getName()));
+            }
+            System.out.println(new User(account.getEmail(), account.getPassword(), grantedAuthorities));
+            return new User(account.getEmail(), account.getPassword(), grantedAuthorities);
+        }else {
             throw new RuntimeException("User not  found");
         }
-        Account account = optionalAccount.get();
-
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(account.getRole()));
-
-        for (Authority _auth: account.getAuthorities()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(_auth.getName()));
-        }
-        return new User(account.getEmail(), account.getPassword(), grantedAuthorities);
     }
 }

@@ -41,8 +41,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/editor/**").hasAnyRole("ADMIN","EDITOR")
                 .requestMatchers("/admin/**").hasAuthority(Privileges.ACCESS_ADMIN_PANEL.getPrivilege())
                 .and()
-                .formLogin(
-                        formLogin -> formLogin
+                .formLogin(formLogin -> formLogin
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
                                 .usernameParameter("email")
